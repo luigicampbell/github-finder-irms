@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
+import Navbar from './components/Navbar';
 import './App.css';
 
-class App extends Component {
-  lastName = () => {
-    return `Campbell`;
-  }
-
+export default class App extends Component {
   render() {
-    const name = 'Luigi';
+    
     return (
       <div className="App">
-        <h1>
-            Hello {name} {this.lastName()}
-        </h1>
+        <Navbar title={"Github Frindr"} iconClass={"fab fa-github"} />
       </div>
     );
   }
 }
-
-export default App;
