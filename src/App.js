@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './components/Layout/Navbar';
+import Search from './components/search/Search';
 import UserCollection from './components/User/UserCollection';
 import './App.css';
 
@@ -27,6 +28,7 @@ export default class App extends Component {
       <div className="App">
         <Navbar title={"Github Frindr"} iconClass={"fab fa-github"} />
         <div className="container">
+          <Search />
           <UserCollection isLoading={isLoading} users={users}/>
         </div>
       </div>
