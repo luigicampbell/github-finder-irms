@@ -3,6 +3,8 @@ import Navbar from './components/Layout/Navbar';
 import UserCollection from './components/User/UserCollection';
 import './App.css';
 
+const { CLIENT_ID, CLIENT_SECRET } = process.env;
+
 export default class App extends Component {
   state = {
     users: [],
@@ -38,8 +40,16 @@ export default class App extends Component {
   }
 
   fetchUsers = async () => {
-    const data = await fetch('https://api.github.com/users');
+    this.setState(
+      {
+        isLoading: true
+      }
+    );
+    
+    const url = `https://api.github.com/users?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`;
+    const data = await fetch(url);
     const users = await data.json();
+
     this.setState(
       {
         users: users,

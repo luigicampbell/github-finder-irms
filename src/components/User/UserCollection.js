@@ -1,5 +1,6 @@
 import React from 'react';
 import User from './User';
+import Spinner from '../Layout/Spinner';
 
 const userStyle = {
   display: 'grid',
@@ -9,7 +10,7 @@ const userStyle = {
 
 const UserCollection = props => {
   const { isLoading, users } = props;
-  return (
+  return isLoading ? <Spinner /> : (
     <div style={userStyle}>
       {
         users.map(
