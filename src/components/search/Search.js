@@ -6,8 +6,10 @@ export default class Search extends Component {
   };
 
   onChange = event => {
+    console.log('I have triggered an event');
     const { name, value } = event.target;
-
+    console.log('the event stores the object whose value has changed:', event.target);
+    console.log('the name of the object that has changed:',name,'\n','the value of the object that has changed:', value);
     this.setState(
       {
         [name]: value
@@ -17,20 +19,24 @@ export default class Search extends Component {
 
   onSubmit = event => {
     event.preventDefault();
+    this.props.searchUsers(this.state.searchText);
+    this.setState({ searchText: '' })
 
   } 
 
   render() {
     return (
       <div>
-        <form className="form">
+        <form 
+          className="form"
+          onSubmit={this.onSubmit}
+        >
           <input 
            type="text" 
            name="searchText"
            placeholder="Search users..."
            value={this.state.searchText} 
            onChange={this.onChange}
-           onSubmit={this.onSubmit}
           />
            <input 
             type="submit"

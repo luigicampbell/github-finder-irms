@@ -28,7 +28,7 @@ export default class App extends Component {
       <div className="App">
         <Navbar title={"Github Frindr"} iconClass={"fab fa-github"} />
         <div className="container">
-          <Search />
+          <Search searchUsers={this.searchUsers} />
           <UserCollection isLoading={isLoading} users={users}/>
         </div>
       </div>
@@ -59,5 +59,9 @@ export default class App extends Component {
       }
     );
     console.log(users);
+  }
+
+  searchUsers = () => {
+    
   }
 }
