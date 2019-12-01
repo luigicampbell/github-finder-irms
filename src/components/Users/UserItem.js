@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const User = props => {
-  const { login, avatar_url, html_url } = props.user;
+const UserItem = props => {
+  const { login, avatar_url } = props.userItem;
   return (
     <div className="card text-center">
       <img
@@ -9,19 +10,19 @@ const User = props => {
         alt="profile pic"
         className="round-img"
         style={{ width: '60px' }}
-        />
+      />
         <h3>{login}</h3>
         <div>
-          <a 
-            href={html_url} 
+          <Link 
+            to={`/user/${login}`} 
             alt="link to user profile"
             className="btn btn-dark btn-sm my-l"
             >
               More
-          </a>
+          </Link>
         </div>
     </div>
   );
 }
 
-export default User;
+export default UserItem;
