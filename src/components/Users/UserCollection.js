@@ -1,5 +1,5 @@
 import React from 'react';
-import User from './User';
+import UserItem from './UserItem';
 import Spinner from '../Layout/Spinner';
 
 const userStyle = {
@@ -14,10 +14,10 @@ const UserCollection = props => {
     <div style={userStyle}>
       {
         users.map(
-          user => (
-            <User 
-              key={user.id} 
-              user={user} 
+          userItem => (
+            <UserItem 
+              key={userItem.id} 
+              userItem={userItem} 
               />
           )
         )
