@@ -1,32 +1,41 @@
-import React, { Component,  } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Repos from '../Repos/Repos';
 import Spinner from '../Layout/Spinner';
 import { Link } from 'react-router-dom';
-export class User extends Component {
-  componentDidMount() {
-    const param = this.props.match.params.login;
-    this.props.getUser(param);
-    this.props.getUserRepos(param);
-  }
+import GithubContext from '../../context/github/githubContext';
 
-  render() {
-    const { 
-      avatar_url, 
-      bio,
-      blog,
-      company,
-      followers,
-      following,
-      hireable,
-      html_url, 
-      location, 
-      login,
-      name,
-      public_repos,
-      public_gists,
-      website 
-    } = this.props.user;
-    const { isLoading, repos } = this.props;
+const User = ({ match }) => {
+  const { 
+    user,
+    repos,
+    getUser,
+    getUserRepos,
+    isLoading
+  } = useContext(GithubContext);
+
+  useEffect(() => {
+    const param = match.params.login;
+      getUser(param);
+      getUserRepos(param);
+  }, []); // <- fix hack?
+
+  const { 
+    avatar_url, 
+    bio,
+    blog,
+    company,
+    followers,
+    following,
+    hireable,
+    html_url, 
+    location, 
+    login,
+    name,
+    public_repos,
+    public_gists,
+    website 
+  } = user;
+    
     return isLoading ? <Spinner /> : (
       <>
         <Link to='/' className='btn btn-light'>
@@ -106,7 +115,6 @@ export class User extends Component {
         <Repos repos={repos} />
       </>
     );
-  }
 }
 
 export default User;

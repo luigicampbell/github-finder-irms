@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import UserItem from './UserItem';
 import Spinner from '../Layout/Spinner';
+import GithubContext from '../../context/github/githubContext';
 
 const userStyle = {
   display: 'grid',
@@ -8,8 +9,9 @@ const userStyle = {
   gridGap: '1rem'
 };
 
-const UserCollection = props => {
-  const { isLoading, users } = props;
+const UserCollection = () => {
+  const { isLoading, users } = useContext(GithubContext);
+  
   return isLoading ? <Spinner /> : (
     <div style={userStyle}>
       {
@@ -18,7 +20,7 @@ const UserCollection = props => {
             <UserItem 
               key={userItem.id} 
               userItem={userItem} 
-              />
+            />
           )
         )
       }
