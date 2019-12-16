@@ -9,7 +9,7 @@ import {
   SET_ISLOADING,
 } from '../types.js'
 
-const { CLIENT_ID, CLIENT_SECRET } = process.env;
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
 const GithubState = props => {
   const initialState = {
     user: {},
@@ -24,7 +24,7 @@ const GithubState = props => {
   const searchUsers = async searchText => {
     setIsLoading();
     
-    const url = `https://api.github.com/search/users?q=${searchText}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`;
+    const url = `https://api.github.com/search/users?q=${searchText}&client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_CLIENT_SECRET}`;
     const res = await fetch(url);
     const data = await res.json();
     const users = data.items;
@@ -38,7 +38,7 @@ const GithubState = props => {
   // Get User
   const getUser = async username => {
     setIsLoading();
-    const url = `https://api.github.com/users/${username}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`;
+    const url = `https://api.github.com/users/${username}?client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_CLIENT_SECRET}`;
     const data = await fetch(url);
     const user = await data.json();
     
@@ -51,7 +51,7 @@ const GithubState = props => {
   // Get Repos
   const getUserRepos = async username => {
     setIsLoading();
-    const url = `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`;
+    const url = `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_CLIENT_SECRET}`;
     const data = await fetch(url);
     const repos = await data.json();
     
