@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import GithubContext from '../../context/github/githubContext';
+import AlertContext from '../../context/alert/alertContext';
 
-const Search = ({ searchUsers, showClearUsersButton, clearUsers, setAlert }) => {
+const Search = () => {
+  const { 
+    users, 
+    clearUsers, 
+    searchUsers, 
+  } = useContext(GithubContext);
+  const { setAlert } = useContext(AlertContext);
   const [searchText, setSearchText] = useState('');
 
   const onChange = event =>  setSearchText(event.target.value);
@@ -14,7 +22,7 @@ const Search = ({ searchUsers, showClearUsersButton, clearUsers, setAlert }) => 
       setSearchText('');
     }
 
-  } 
+  };
 
    return (
       <div>
@@ -36,7 +44,7 @@ const Search = ({ searchUsers, showClearUsersButton, clearUsers, setAlert }) => 
           />
 
         </form>
-        {showClearUsersButton && (
+        {users.length > 0 && (
           <button 
             className="btn btn-light btn-block"
             onClick={clearUsers}
